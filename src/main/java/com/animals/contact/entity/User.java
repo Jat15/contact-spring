@@ -15,7 +15,7 @@ public class User {
     String password;
     String email;
     String avatar;
-    @OneToMany
+    @OneToMany(mappedBy="user")
     List<Contact> contacts;
 
 

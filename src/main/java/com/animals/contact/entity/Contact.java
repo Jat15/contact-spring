@@ -13,6 +13,8 @@ public class Contact {
     private String firstname;
     private String email;
     private String tel;
+    @ManyToOne
+    private User user;
     @OneToMany(mappedBy="contact1")
     private List<Relationship> relationships;
 
