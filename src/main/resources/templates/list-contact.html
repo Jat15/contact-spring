@@ -16,8 +16,10 @@
     </header>
     <main>
         <div th:each="contact : ${ contacts }" th:object="${contact}">
-            <p th:text="*{firstname}">
-            <p th:text="*{lastname}">
+            <div th:href="@{/contact/detail/${id}}">
+                <p th:text="*{firstname}">
+                <p th:text="*{lastname}">
+            </div>
         </div>
     </main>
 </body>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +36,17 @@ public class ContactController {
         }
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/contact/detail/{id}")
+    public String displayContactDetail(@PathVariable Long id, Model model){
+        Optional<Contact> contactOptional = contactRepository.findById(id);
+        if(contactOptional.isPresent()){
+            model.addAttribute("contact", contactOptional.get());
+            return "detail.html";
+        }else {
+            return "404.html";
+        }
     }
 
     @GetMapping("/add")
