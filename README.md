@@ -21,4 +21,4 @@ un système permettant à ses utilisateurs de gérer une liste de contacts.
 
 ### Auteurs
 
-© Sonny LESRALE, Camille BIBAUT, 2023
+© Sonny LERASLE, Camille BIBAUT, 2023
