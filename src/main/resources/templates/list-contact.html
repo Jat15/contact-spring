@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
+    <title>Title</title>
+</head>
+<body>
+
+
+    <main>
+        <div th:each="contact : ${ contacts }" th:object="${contact}">
+            <p th:text="*{firstname}">
+            <p th:text="*{lastname}">
+        </div>
+    </main>
+</body>
+</html>
