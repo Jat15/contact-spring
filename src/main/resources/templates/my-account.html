@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
+  <title>Title</title>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a th:href="@{/contact/list}">Contacts</a></li>
+      <li><a th:href="@{/contact/add}">Ajout de contact</a></li>
+      <li><a th:href="@{/my-account}">Mon compte</a></li>
+    </ul>
+  </nav>
+  <h1>Mon compte</h1>
+</header>
+<main>
+  <div th:object="${user}">
+    <div>
+      <span>Prénom : </span>
+      <span th:text="*{firstname}" />
+        <a th:href="@{/my-account/edit/firstname}">Edit</a>
+    </div>
+    <div>
+      <span>Nom : </span>
+      <span th:text="*{lastname}" />
+        <a th:href="@{/my-account/edit/lastname}">Edit</a>
+    </div>
+    <div>
+      <span>Avatar : </span>
+      <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}">
+      <a th:href="@{/my-account/edit/avatar}">Edit</a>
+    </div>
+    <div>
+      <span>Email : </span>
+      <span th:text="*{email}" />
+        <a th:href="@{/my-account/edit/email}">Edit</a>
+    </div>
+    <div>
+      <span>Password : </span>
+      <a th:href="@{/my-account/edit/password}">Edit</a>
+    </div>
+
+  </div>
+</main>
+</body>
+</html>
