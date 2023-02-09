@@ -8,16 +8,17 @@
 <header>
   <nav>
     <ul>
-      <li><a th:href="@{/}">Home</a></li>
+      <li><a th:href="@{/contact/list}">Contacts</a></li>
+      <li><a th:href="@{/contact/add}">Ajout de contact</a></li>
     </ul>
   </nav>
   <h1>Add contact</h1>
 </header>
-<form action="#" th:action="@{/add-contact}" th:object="${contact}" method="post">
+<form action="#" th:action="@{/contact/add}" th:object="${contact}" method="post">
   <p>Nom: <input type="text" th:field="*{lastname}"></p>
   <p>Prénom: <input type="text" th:field="*{firstname}"></p>
   <p>Email: <input type="email" th:field="*{email}"></p>
-  <p>Tél: <input type="number" th:field="*{tel}"></p>
+  <p>Tél: <input type="tel" th:field="*{tel}"></p>
   <input type="submit" value="Enregistrer">
 </form>
 </body>
