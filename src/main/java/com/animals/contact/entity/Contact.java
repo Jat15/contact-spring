@@ -61,4 +61,28 @@ public class Contact {
     public void setTel(String tel) {
         this.tel = tel;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Relationship> getRelationships() {
+        return relationships;
+    }
+
+    public void setRelationships(List<Relationship> relationships) {
+        this.relationships = relationships;
+    }
+
+    public List<Relationship> getRelationships2() {
+        return relationships2;
+    }
+
+    public void setRelationships2(List<Relationship> relationships2) {
+        this.relationships2 = relationships2;
+    }
 }
