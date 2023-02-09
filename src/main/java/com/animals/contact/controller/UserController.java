@@ -1,7 +1,7 @@
 package com.animals.contact.controller;
 
 import com.animals.contact.entity.User;
-import com.animals.contact.repository.UserRepository;
+import com.animals.contact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +13,9 @@ import java.util.List;
 @Controller
 public class UserController {
 
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/sign-up")
     public String displayFormAddUser(Model model){
@@ -24,7 +25,7 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public String addUser (User user) {
-        userRepository.save(user);
+        userService.addUser(user);
         return "redirect:home";
     }
 
