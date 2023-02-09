@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/html" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign-Up</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign-Up</title>
+    </head>
+    <body>
 
-<header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/sign-up}">Sign up</a></li>
-        </ul>
-    </nav>
-    <h1>Sign up</h1>
-</header>
-<form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
-  <p>Nom: <input type="text" th:field="*{lastname}"></p>
-  <p>Prénom: <input type="text" th:field="*{firstname}"></p>
-  <p>Email: <input type="email" th:field="*{email}"></p>
-  <p>Mot de passe: <input type="password" th:field="*{password}"></p>
-  <p>Avatar: <input type="file" th:field="*{avatar}"></p>
-  <input type="submit" value="Enregistrer">
-</form>
-</body>
+        <header>
+            <div th:replace="~{fragments/nav :: nav}" />
+            <h1>Sign up</h1>
+        </header>
+        <main>
+            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
+              <p>Nom: <input type="text" th:field="*{lastname}"></p>
+              <p>Prénom: <input type="text" th:field="*{firstname}"></p>
+              <p>Email: <input type="email" th:field="*{email}"></p>
+              <p>Mot de passe: <input type="password" th:field="*{password}"></p>
+              <p>Avatar: <input type="file" th:field="*{avatar}"></p>
+              <input type="submit" value="Enregistrer">
+            </form>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}" />
+    </body>
 </html>

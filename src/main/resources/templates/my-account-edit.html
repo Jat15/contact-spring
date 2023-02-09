@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
-  <title>Title</title>
-</head>
-<body>
-<header>
-  <nav>
-    <ul>
-      <li><a th:href="@{/contact/list}">Contacts</a></li>
-      <li><a th:href="@{/contact/add}">Ajout de contact</a></li>
-      <li><a th:href="@{/my-account}">Mon compte</a></li>
-    </ul>
-  </nav>
-  <h1>Edition du compte</h1>
-</header>
-<main>
-  <form action="#" th:action="@{/my-account/edit}" method="post">
-      <th:block th:switch="${field}">
-          <th:block th:case="'email'">
-              <input type="email" th:placeholder="${field}" th:name="value">
-          </th:block>
-          <th:block th:case="'password'">
-              <input type="password" th:placeholder="${field}" th:name="value">
-          </th:block>
-          <th:block th:case="*">
-              <input type="text" th:placeholder="${field}" th:name="value">
-          </th:block>
-      </th:block>
-      <input type="text" th:value="${field}" th:name="field" hidden>
-      <button type="submit">Modifier</button>
-  </form>
-</main>
-</body>
+    <head>
+      <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
+      <title>Title</title>
+    </head>
+    <body>
+        <header>
+            <div th:replace="~{fragments/nav-auth :: nav}" />
+          <h1>Edition du compte</h1>
+        </header>
+        <main>
+          <form action="#" th:action="@{/my-account/edit}" method="post">
+              <th:block th:switch="${field}">
+                  <th:block th:case="'email'">
+                      <input type="email" th:placeholder="${field}" th:name="value">
+                  </th:block>
+                  <th:block th:case="'password'">
+                      <input type="password" th:placeholder="${field}" th:name="value">
+                  </th:block>
+                  <th:block th:case="*">
+                      <input type="text" th:placeholder="${field}" th:name="value">
+                  </th:block>
+              </th:block>
+              <input type="text" th:value="${field}" th:name="field" hidden>
+              <button type="submit">Modifier</button>
+          </form>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}" />
+    </body>
 </html>

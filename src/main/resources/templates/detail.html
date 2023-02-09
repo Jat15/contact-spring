@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" xmlns="http://www.w3.org/1999/html" xmlns:th="https://www.thymeleaf.org/">
-    <title>Détails contact</title>
-</head>
-<body>
-<div th:object="${contact}">
-  <p th:text="*{lastname}"></p>
-  <p th:text="*{firstname}"></p>
-  <p th:text="*{email}"></p>
-  <p th:text="*{tel}"></p>
-</div>
-</body>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" xmlns="http://www.w3.org/1999/html" xmlns:th="https://www.thymeleaf.org/">
+        <title>Détails contact</title>
+    </head>
+    <body>
+        <header>
+            <div th:replace="~{fragments/nav-auth :: nav}" />
+        </header>
+        <main>
+            <div th:object="${contact}">
+              <p th:text="*{lastname}"></p>
+              <p th:text="*{firstname}"></p>
+              <p th:text="*{email}"></p>
+              <p th:text="*{tel}"></p>
+            </div>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}" />
+    </body>
 </html>
