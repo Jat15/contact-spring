@@ -13,6 +13,7 @@ public class User {
     String firstname;
     String lastname;
     String password;
+    @Column(unique = true)
     String email;
     String avatar;
     @OneToMany(mappedBy="user")
