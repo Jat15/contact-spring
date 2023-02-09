@@ -6,10 +6,10 @@
 </head>
 <body>
 <div th:object="${contact}">
-  <p th:utext="${lastname}"></p>
-  <p th:utext="${firstname}"></p>
-  <p th:utext="${email}"></p>
-  <p th:utext="${tel}"></p>
+  <p th:text="*{lastname}"></p>
+  <p th:text="*{firstname}"></p>
+  <p th:text="*{email}"></p>
+  <p th:text="*{tel}"></p>
 </div>
 </body>
 </html>
