@@ -38,7 +38,7 @@ public class ContactController {
         return "redirect:/home";
     }
 
-    @GetMapping("/contact/detail/{id}")
+    @GetMapping("/detail/{id}")
     public String displayContactDetail(@PathVariable Long id, Model model){
         Optional<Contact> contactOptional = contactRepository.findById(id);
         if(contactOptional.isPresent()){
