@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
-    <title>Title</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a th:href="@{/contact/list}">Contacts</a></li>
-                <li><a th:href="@{/contact/add}">Ajout de contact</a></li>
-            </ul>
-        </nav>
-        <h1>List contact</h1>
-    </header>
-    <main>
-        <section>
-            <a th:href="@{'/contact/detail/' + *{id}} " th:each="contact : ${ contacts }" th:object="${contact}">
-                <div>
-                    <p th:text="*{firstname}">
-                    <p th:text="*{lastname}">
-                </div>
-            </a>
-        </section>
-    </main>
-</body>
+    <head>
+        <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
+        <title>Title</title>
+    </head>
+    <body>
+        <header>
+            <div th:replace="~{fragments/nav-auth :: nav}" />
+            <h1>List contact</h1>
+        </header>
+        <main>
+            <section>
+                <a th:href="@{'/contact/detail/' + *{id}} " th:each="contact : ${ contacts }" th:object="${contact}">
+                    <div>
+                        <p th:text="*{firstname}">
+                        <p th:text="*{lastname}">
+                    </div>
+                </a>
+            </section>
+        </main>
+        <div th:replace="~{fragments/footer :: footer}" />
+    </body>
 </html>

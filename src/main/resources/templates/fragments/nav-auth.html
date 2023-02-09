@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+        <li><a th:href="@{/contact/list}">List des contacts</a></li>
+        <li><a th:href="@{/contact/add}">Ajouter un contact</a></li>
+        <li><a th:href="@{/my-account}">Mon compte</a></li>
+        <li>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Déconnexion"/>
+            </form>
+        </li>
+    </ul>
+</nav>
