@@ -5,6 +5,16 @@
     <title>Sign-Up</title>
 </head>
 <body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/sign-up}">Sign up</a></li>
+        </ul>
+    </nav>
+    <h1>Sign up</h1>
+</header>
 <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
   <p>Nom: <input type="text" th:field="*{lastname}"></p>
   <p>Prénom: <input type="text" th:field="*{firstname}"></p>

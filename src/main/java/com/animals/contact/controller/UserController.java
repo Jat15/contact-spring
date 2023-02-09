@@ -25,6 +25,8 @@ public class UserController {
     @PostMapping("/sign-up")
     public String addUser (User user) {
         userRepository.save(user);
-        return "home.html";
+        return "redirect:home";
     }
+
+    
 }
