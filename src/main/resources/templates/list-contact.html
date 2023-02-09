@@ -15,12 +15,14 @@
         <h1>List contact</h1>
     </header>
     <main>
-        <div th:each="contact : ${ contacts }" th:object="${contact}">
-            <div th:href="@{/contact/detail/${id}}">
-                <p th:text="*{firstname}">
-                <p th:text="*{lastname}">
-            </div>
-        </div>
+        <section>
+            <a th:href="@{'/contact/detail/' + *{id}} " th:each="contact : ${ contacts }" th:object="${contact}">
+                <div>
+                    <p th:text="*{firstname}">
+                    <p th:text="*{lastname}">
+                </div>
+            </a>
+        </section>
     </main>
 </body>
 </html>
