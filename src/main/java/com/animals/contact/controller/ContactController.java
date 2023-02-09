@@ -37,16 +37,22 @@ public class ContactController {
         return "redirect:/home";
     }
 
-    @GetMapping("/add-contact")
+    @GetMapping("/add")
     public String displayFormAddContact(Model model){
         model.addAttribute("contact", new Contact());
         return "add-contact";
     }
 
-    @PostMapping("/add-contact")
+    @PostMapping("/add")
     public String addContact (Contact contact) {
-        contactRepository.save(contact);
-        return "redirect:home";
+        Optional<User> user = userRepository.findById(idEmulate);
+
+        if (user.isPresent()) {
+            contact.setUser(user.get());
+            contactRepository.save(contact);
+        }
+
+        return "redirect:/contact/list";
     }
 
 
