@@ -18,33 +18,33 @@
     </div>
     <div id="main">
       <header class="header">
-        <h1>My account</h1>
+        <h1>Mon compte</h1>
       </header>
       <main class="content">
       <div th:object="${user}">
         <div>
           <span>Prénom : </span>
           <span th:text="*{firstname}" />
-            <a th:href="@{/my-account/edit/firstname}">Edit</a>
-        </div>
+            <a th:href="@{/my-account/edit/firstname}" class="pure-button">Editer prénom</a>
+        </div><br>
         <div>
           <span>Nom : </span>
           <span th:text="*{lastname}" />
-            <a th:href="@{/my-account/edit/lastname}">Edit</a>
-        </div>
+            <a th:href="@{/my-account/edit/lastname}" class="pure-button">Editer nom</a>
+        </div><br>
         <div>
           <span>Avatar : </span>
           <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive acnt-avatar">
-          <a th:href="@{/my-account/edit/avatar}">Edit</a>
-        </div>
+          <a th:href="@{/my-account/edit/avatar}" class="pure-button">Editer avatar</a>
+        </div><br>
         <div>
           <span>Email : </span>
           <span th:text="*{email}" />
-            <a th:href="@{/my-account/edit/email}">Edit</a>
-        </div>
+            <a th:href="@{/my-account/edit/email}" class="pure-button">Editer email</a>
+        </div><br>
         <div>
-          <span>Password : </span>
-          <a th:href="@{/my-account/edit/password}">Edit</a>
+          <span>Mot de passe : </span>
+          <a th:href="@{/my-account/edit/password}" class="pure-button">Editer mot de passe</a>
         </div>
       </div>
     </main>
