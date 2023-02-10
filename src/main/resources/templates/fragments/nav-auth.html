@@ -1,6 +1,11 @@
 <nav class="pure-menu">
+    <div th:object="${user}" class="user pure-menu-item"><a th:href="@{/my-account}" class="profile-link">
+        <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive nav-avatar"><br>
+        <span th:text="*{lastname} + ' ' + *{firstname}" />
+    </a>
+    </div>
     <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a th:href="@{/contact/list}" class="pure-menu-link">List des contacts</a></li>
+        <li class="pure-menu-item"><a th:href="@{/contact/list}" class="pure-menu-link">Liste des contacts</a></li>
         <li class="pure-menu-item"><a th:href="@{/contact/add}" class="pure-menu-link">Ajouter un contact</a></li>
         <li class="pure-menu-item"><a th:href="@{/my-account}" class="pure-menu-link">Mon compte</a></li>
         <li class="pure-menu-item">

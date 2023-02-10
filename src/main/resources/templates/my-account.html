@@ -34,7 +34,7 @@
         </div>
         <div>
           <span>Avatar : </span>
-          <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}">
+          <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive acnt-avatar">
           <a th:href="@{/my-account/edit/avatar}">Edit</a>
         </div>
         <div>
