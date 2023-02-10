@@ -22,12 +22,15 @@
             </header>
             <main class="content">
             <section>
-                <a th:href="@{'/contact/detail/' + *{id}} " th:each="contact : ${ contacts }" th:object="${contact}">
-                    <div>
-                        <p th:text="*{firstname}">
-                        <p th:text="*{lastname}">
-                    </div>
-                </a>
+                <ul>
+                    <li>
+                        <a th:href="@{'/contact/detail/' + *{id}} " th:each="contact : ${ contacts }" th:object="${contact}" class="contact">
+                            <div>
+                                <p th:text="*{firstname} + ' ' + *{lastname}">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </section>
         </main>
         <div th:replace="~{fragments/footer :: footer}" />

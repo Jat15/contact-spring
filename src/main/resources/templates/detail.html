@@ -22,10 +22,10 @@
             </header>
             <main class="content">
             <div th:object="${contact}">
-              <p th:text="*{lastname}"></p>
-              <p th:text="*{firstname}"></p>
-              <p th:text="*{email}"></p>
-              <p th:text="*{tel}"></p>
+              <p th:text="'Nom : ' + *{lastname}"></p>
+              <p th:text="'Prénom : ' + *{firstname}"></p>
+              <p th:text="'Email : ' + *{email}"></p>
+              <p th:text="'Tél : ' + *{tel}"></p>
             </div>
         </main>
         <div th:replace="~{fragments/footer :: footer}" />
