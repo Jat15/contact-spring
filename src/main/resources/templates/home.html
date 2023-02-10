@@ -26,14 +26,12 @@
                     Invalid username and password.</div>
                 <div th:if="${param.logout}">
                     You have been logged out.</div>
-                <form th:action="@{/login}" method="post">
-                    <div>
-                        <input type="text" name="username" placeholder="Username"/>
-                    </div>
-                    <div>
-                        <input type="password" name="password" placeholder="Password"/>
-                    </div>
-                    <input type="submit" value="Log in" />
+                <form th:action="@{/login}" method="post" class="pure-form">
+                    <fieldset>
+                            <input type="text" name="username" placeholder="Email"/>
+                            <input type="password" name="password" placeholder="Password"/>
+                        <input type="submit" value="Log in" class="pure-button pure-button-primary"/>
+                    </fieldset>
                 </form>
             </main>
             <div th:replace="~{fragments/footer :: footer}" />
