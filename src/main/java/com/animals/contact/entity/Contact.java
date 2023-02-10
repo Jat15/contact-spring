@@ -15,11 +15,11 @@ public class Contact {
     private String tel;
     @ManyToOne
     private User user;
-    @OneToMany(mappedBy="contact1")
-    private List<Relationship> relationships;
+    @OneToMany(mappedBy="contactSrc")
+    private List<Relationship> relationshipsSrc;
 
-    @OneToMany(mappedBy="contact2")
-    private List<Relationship> relationships2;
+    @OneToMany(mappedBy="contactDest")
+    private List<Relationship> relationshipsDest;
 
 
     public Long getId() {
@@ -70,19 +70,19 @@ public class Contact {
         this.user = user;
     }
 
-    public List<Relationship> getRelationships() {
-        return relationships;
+    public List<Relationship> getRelationshipsSrc() {
+        return relationshipsSrc;
     }
 
-    public void setRelationships(List<Relationship> relationships) {
-        this.relationships = relationships;
+    public void setRelationshipsSrc(List<Relationship> relationshipsSrc) {
+        this.relationshipsSrc = relationshipsSrc;
     }
 
-    public List<Relationship> getRelationships2() {
-        return relationships2;
+    public List<Relationship> getRelationshipsDest() {
+        return relationshipsDest;
     }
 
-    public void setRelationships2(List<Relationship> relationships2) {
-        this.relationships2 = relationships2;
+    public void setRelationshipsDest(List<Relationship> relationshipsDest) {
+        this.relationshipsDest = relationshipsDest;
     }
 }
