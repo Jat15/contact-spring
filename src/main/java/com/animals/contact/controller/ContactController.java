@@ -19,11 +19,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping(path="/contact")
 public class ContactController {
-
-    private Long idEmulate = 1l;
-
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -34,13 +31,11 @@ public class ContactController {
     @GetMapping(path="/list")
     public String getAllContact(Model model, Principal principal) {
         String userEmail = principal.getName();
-        User userProfile = userService.findUser(userEmail);
+        Optional<User> user = userService.findUser(userEmail);
 
-        model.addAttribute("user", userProfile);
-
-        Optional<User> user = userRepository.findById(idEmulate);
 
         if (user.isPresent()){
+            model.addAttribute("user", user.get());
             model.addAttribute("contacts", user.get().getContacts());
             return "list-contact";
         }
@@ -51,33 +46,41 @@ public class ContactController {
     @GetMapping("/detail/{id}")
     public String displayContactDetail(@PathVariable Long id, Model model, Principal principal){
         String userEmail = principal.getName();
-        User userProfile = userService.findUser(userEmail);
+        Optional<User> userProfile = userService.findUser(userEmail);
 
-        model.addAttribute("user", userProfile);
+        if (userProfile.isPresent()) {
+            model.addAttribute("user", userProfile);
 
-        Optional<Contact> contactOptional = contactRepository.findById(id);
-        if(contactOptional.isPresent()){
-            model.addAttribute("contact", contactOptional.get());
-            return "detail.html";
-        }else {
-            return "404.html";
+            Optional<Contact> contactOptional = contactRepository.findById(id);
+
+            if(contactOptional.isPresent()){
+                model.addAttribute("contact", contactOptional.get());
+                return "detail.html";
+            }
         }
+
+        return "404.html";
     }
 
     @GetMapping("/add")
     public String displayFormAddContact(Model model, Principal principal){
         String userEmail = principal.getName();
-        User userProfile = userService.findUser(userEmail);
+        Optional<User> userProfile = userService.findUser(userEmail);
 
-        model.addAttribute("user", userProfile);
+        if (userProfile.isPresent()) {
+            model.addAttribute("user", userProfile.get());
 
-        model.addAttribute("contact", new Contact());
-        return "add-contact";
+            model.addAttribute("contact", new Contact());
+            return "add-contact";
+        }
+
+        return "404";
     }
 
     @PostMapping("/add")
-    public String addContact (Contact contact) {
-        Optional<User> user = userRepository.findById(idEmulate);
+    public String addContact (Contact contact, Principal principal) {
+        String userEmail = principal.getName();
+        Optional<User> user = userService.findUser(userEmail);
 
         if (user.isPresent()) {
             contact.setUser(user.get());
@@ -86,6 +89,4 @@ public class ContactController {
 
         return "redirect:/contact/list";
     }
-
-
 }

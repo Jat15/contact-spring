@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -25,10 +27,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User findUser(String email){
-        User user = userRepository.findByEmail(email);
-
-        return user;
+    public Optional<User> findUser(String email){
+        return userRepository.findByEmail(email);
     }
 
     public User updateUser(User user) {
