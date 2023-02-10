@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class RelationShipPK implements Serializable {
@@ -11,22 +12,13 @@ public class RelationShipPK implements Serializable {
     private Long contactSrcId;
     @Column(name="contact_dest_id")
     private Long contactDestId;
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        RelationShipPK that = (RelationShipPK) o;
-
-        if (!getContactSrcId().equals(that.getContactSrcId())) return false;
-        return getContactDestId().equals(that.getContactDestId());
+    public RelationShipPK() {
     }
 
-    @Override
-    public int hashCode() {
-        int result = getContactSrcId().hashCode();
-        result = 31 * result + getContactDestId().hashCode();
-        return result;
+    public RelationShipPK(Long contactSrcId, Long contactDestId) {
+        this.contactSrcId = contactSrcId;
+        this.contactDestId = contactDestId;
     }
 
     public Long getContactSrcId() {
@@ -43,5 +35,18 @@ public class RelationShipPK implements Serializable {
 
     public void setContactDestId(Long contactDestId) {
         this.contactDestId = contactDestId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RelationShipPK that = (RelationShipPK) o;
+        return Objects.equals(contactSrcId, that.contactSrcId) && Objects.equals(contactDestId, that.contactDestId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contactSrcId, contactDestId);
     }
 }

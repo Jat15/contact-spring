@@ -15,7 +15,7 @@ public class Relationship {
     private Contact contactSrc;
 
     @ManyToOne
-    @JoinColumn(name = "contact_dest_src")
+    @JoinColumn(name = "contact_dest_id")
     @MapsId("contact_src_id")
     private Contact contactDest;
 
@@ -23,11 +23,9 @@ public class Relationship {
     private Tag tagSrc;
 
     public Relationship() {
-
     }
-
-    public Relationship(RelationShipPK id, Contact contactSrc, Contact contactDest, Tag tagSrc) {
-        this.id = id;
+    public Relationship(Contact contactSrc, Contact contactDest, Tag tagSrc) {
+        this.id = new RelationShipPK(contactSrc.getId(), contactDest.getId());
         this.contactSrc = contactSrc;
         this.contactDest = contactDest;
         this.tagSrc = tagSrc;
