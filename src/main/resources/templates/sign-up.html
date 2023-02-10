@@ -20,14 +20,16 @@
             <header class="header">
             <h1>Sign up</h1>
         </header>
-        <main>
-            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
-              <p>Nom: <input type="text" th:field="*{lastname}"></p>
-              <p>Prénom: <input type="text" th:field="*{firstname}"></p>
-              <p>Email: <input type="email" th:field="*{email}"></p>
-              <p>Mot de passe: <input type="password" th:field="*{password}"></p>
-              <p>Avatar: <input type="file" th:field="*{avatar}"></p>
-              <input type="submit" value="Enregistrer">
+        <main class="content">
+            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post" class="pure-form pure-form-aligned">
+                <fieldset>
+                    <p class="pure-control-group">Nom: <input type="text" th:field="*{lastname}"></p>
+                    <p class="pure-control-group">Prénom: <input type="text" th:field="*{firstname}"></p>
+                    <p class="pure-control-group">Email: <input type="email" th:field="*{email}"></p>
+                    <p class="pure-control-group">Mot de passe: <input type="password" th:field="*{password}"></p>
+                    <p class="pure-control-group">Avatar: <input type="file" th:field="*{avatar}"></p>
+                    <input type="submit" value="Enregistrer" class="pure-button pure-button-primary">
+                </fieldset>
             </form>
         </main>
         <div th:replace="~{fragments/footer :: footer}" />
