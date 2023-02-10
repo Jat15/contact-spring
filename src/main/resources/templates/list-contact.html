@@ -18,20 +18,30 @@
         </div>
         <div id="main">
             <header class="header">
-                <h1>List contact</h1>
+                <h1>Liste contacts</h1>
             </header>
             <main class="content">
             <section>
-                <a th:href="@{'/contact/detail/' + *{id}} " th:each="contact : ${ contacts }" th:object="${contact}">
-                    <div>
-                        <p th:text="*{firstname}">
-                        <p th:text="*{lastname}">
-                    </div>
-                </a>
+                <table class="pure-table">
+                    <thead>
+                        <th>Détails</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="contact : ${ contacts }" th:object="${contact}">
+                            <td><a th:href="@{'/contact/detail/' + *{id}} " class="pure-button">Voir</a></td>
+                            <td><p th:text="*{firstname}"></p></td>
+                            <td><p th:text="*{lastname}"></p></td>
+                            </a>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </main>
         <div th:replace="~{fragments/footer :: footer}" />
         </div>
     </div>
+    <script type="text/javascript" th:src="@{/js/ui.js}"></script>
     </body>
 </html>

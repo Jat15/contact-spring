@@ -31,15 +31,20 @@ public class UserController {
     public String displayMyAccount(Model model, Principal principal){
 
         String userEmail = principal.getName();
-        User user = userService.findUser(userEmail);
+        User userProfile = userService.findUser(userEmail);
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", userProfile);
 
         return "my-account";
     }
 
     @GetMapping("/my-account/edit/{field}")
-    public String displayMyAccountEdit(@PathVariable String field, Model model){
+    public String displayMyAccountEdit(@PathVariable String field, Model model, Principal principal){
+        String userEmail = principal.getName();
+        User userProfile = userService.findUser(userEmail);
+
+        model.addAttribute("user", userProfile);
+
         model.addAttribute("field", field);
         return "my-account-edit";
     }

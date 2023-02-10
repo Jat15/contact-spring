@@ -1,5 +1,5 @@
 body {
-    color: #777;
+    color: #333;
 }
 
 .pure-img-responsive {
@@ -40,7 +40,7 @@ This is the parent `<div>` that contains the menu and the content area.
 The content `<div>` is where all your content goes.
 */
 .content {
-    margin: 0 auto;
+    margin: 0;
     padding: 0 2em;
     max-width: 800px;
     margin-bottom: 50px;
@@ -146,6 +146,20 @@ appears on the left side of the page.
         margin: 0;
     }
 
+    .nav-btn{
+        border:none;
+        outline:none;
+        background:transparent;
+        cursor:pointer;
+        color: #fff;
+        padding: 0.6em 0.6em 0.6em 0.6em;
+        width: 150px;
+    }
+
+    .nav-btn:hover{
+        background: #333;
+    }
+
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
 
 /*
@@ -245,4 +259,29 @@ Hides the menu at `48em`, but modify this based on your app's needs.
         position: relative;
         left: 150px;
     }
+}
+
+/*Account avatar resizing*/
+.acnt-avatar{
+    max-width:128px;
+}
+
+/*Avatar for nav*/
+.nav-avatar{
+    vertical-align: middle;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    margin-bottom:0.6em;
+}
+
+/*Nav profile*/
+.user{
+    text-align:center;
+    padding: 0.6em 0.6em 0.6em 0.6em;
+    color: #fff;
+}
+
+.profile-link{
+    text-decoration: none;
 }
