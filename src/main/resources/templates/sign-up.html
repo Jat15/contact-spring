@@ -21,7 +21,7 @@
             <h1>Sign up</h1>
         </header>
         <main class="content">
-            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post" class="pure-form pure-form-aligned">
+            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post" class="pure-form pure-form-stacked">
                 <fieldset>
                     <p class="pure-control-group">Nom: <input type="text" th:field="*{lastname}"></p>
                     <p class="pure-control-group">Prénom: <input type="text" th:field="*{firstname}"></p>
