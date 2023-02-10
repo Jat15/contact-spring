@@ -2,33 +2,35 @@ package com.animals.contact.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Relationship {
     @EmbeddedId
     private RelationShipPK id;
 
     @ManyToOne
-    @JoinColumn(name = "contact_src")
-    @MapsId("contactSrcId")
+    @JoinColumn(name = "contact_src_id")
+    @MapsId("contact_src_id")
     private Contact contactSrc;
 
     @ManyToOne
-    @JoinColumn(name = "contact_dest")
-    @MapsId("contactDestId")
+    @JoinColumn(name = "contact_dest_src")
+    @MapsId("contact_src_id")
     private Contact contactDest;
 
     @OneToOne
     private Tag tagSrc;
+
+    public Relationship() {
+
+    }
 
     public Relationship(RelationShipPK id, Contact contactSrc, Contact contactDest, Tag tagSrc) {
         this.id = id;
         this.contactSrc = contactSrc;
         this.contactDest = contactDest;
         this.tagSrc = tagSrc;
-    }
-
-    public Relationship() {
-
     }
 
     public RelationShipPK getId() {
