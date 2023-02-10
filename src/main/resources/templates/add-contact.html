@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/html" xmlns:th="https://www.thymeleaf.org/">
   <head>
-      <meta charset="UTF-8">
-      <title>Add Contact</title>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
   </head>
   <body>
-    <header>
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
+    <div id="menu" class>
       <div th:replace="~{fragments/nav-auth :: nav}" />
+    </div>
+    <div id="main">
+      <header class="header">
       <h1>Add contact</h1>
     </header>
-    <main>
+    <main class="content">
       <form action="#" th:action="@{/contact/add}" th:object="${contact}" method="post">
         <p>Nom: <input type="text" th:field="*{lastname}"></p>
         <p>Prénom: <input type="text" th:field="*{firstname}"></p>
@@ -19,5 +30,7 @@
       </form>
     </main>
     <div th:replace="~{fragments/footer :: footer}" />
+    </div>
+  </div>
   </body>
 </html>
