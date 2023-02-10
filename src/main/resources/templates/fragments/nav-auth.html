@@ -1,9 +1,9 @@
-<nav>
-    <ul>
-        <li><a th:href="@{/contact/list}">List des contacts</a></li>
-        <li><a th:href="@{/contact/add}">Ajouter un contact</a></li>
-        <li><a th:href="@{/my-account}">Mon compte</a></li>
-        <li>
+<nav class="pure-menu">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a th:href="@{/contact/list}" class="pure-menu-link">List des contacts</a></li>
+        <li class="pure-menu-item"><a th:href="@{/contact/add}" class="pure-menu-link">Ajouter un contact</a></li>
+        <li class="pure-menu-item"><a th:href="@{/my-account}" class="pure-menu-link">Mon compte</a></li>
+        <li class="pure-menu-item">
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Déconnexion"/>
             </form>

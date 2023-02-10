@@ -3,13 +3,24 @@
   <head>
     <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
   </head>
   <body>
-    <header>
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
+    <div id="menu" class>
       <div th:replace="~{fragments/nav-auth :: nav}" />
-      <h1>Mon compte</h1>
-    </header>
-    <main>
+    </div>
+    <div id="main">
+      <header class="header">
+        <h1>My account</h1>
+      </header>
+      <main class="content">
       <div th:object="${user}">
         <div>
           <span>Prénom : </span>
@@ -38,5 +49,7 @@
       </div>
     </main>
     <div th:replace="~{fragments/footer :: footer}" />
+    </div>
+  </div>
   </body>
 </html>
