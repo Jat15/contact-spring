@@ -21,7 +21,8 @@
           <h1>Edition du compte</h1>
         </header>
         <main class="content">
-          <form action="#" th:action="@{/my-account/edit}" method="post">
+          <form action="#" th:action="@{/my-account/edit}" method="post" class="pure-form">
+              <fieldset>
               <th:block th:switch="${field}">
                   <th:block th:case="'email'">
                       <input type="email" th:placeholder="${field}" th:name="value">
@@ -34,7 +35,8 @@
                   </th:block>
               </th:block>
               <input type="text" th:value="${field}" th:name="field" hidden>
-              <button type="submit">Modifier</button>
+              <button type="submit" class="pure-button pure-button-primary">Modifier</button>
+              </fieldset>
           </form>
         </main>
         <div th:replace="~{fragments/footer :: footer}" />
