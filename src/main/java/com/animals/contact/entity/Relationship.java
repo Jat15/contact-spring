@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 public class Relationship {
-    private String tag;
+    @OneToOne
+    private Tag tagSrc;
     @ManyToOne
     @Id
-    @JoinColumn(name = "contact_1_id")
-    private Contact contact1;
+    @JoinColumn(name = "contact_src")
+    private Contact contactSrc;
 
     @ManyToOne
     @Id
-    @JoinColumn(name = "contact_2_id")
-    private Contact contact2;
+    @JoinColumn(name = "contact_dest")
+    private Contact contactDest;
 }
