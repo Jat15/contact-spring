@@ -38,12 +38,16 @@ public class Tag {
     }
 
     public String getNeutral() {
-        return neutral;
+        String resultNeutral = neutral;
+
+        if ( resultNeutral == null ) {
+            resultNeutral =  getFemale() + " / " + getMale();
+        }
+
+        return resultNeutral;
     }
 
-    public void setNeutral(String neutral) {
-        this.neutral = neutral;
-    }
+    public void setNeutral(String neutral) {this.neutral = neutral;}
 
     public Tag getTagDest() {
         return tagDest;

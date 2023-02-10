@@ -2,6 +2,7 @@ package com.animals.contact.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,12 +16,6 @@ public class Contact {
     private String tel;
     @ManyToOne
     private User user;
-    @OneToMany(mappedBy="contactSrc")
-    private List<Relationship> relationshipsSrc;
-
-    @OneToMany(mappedBy="contactDest")
-    private List<Relationship> relationshipsDest;
-
 
     public Long getId() {
         return id;
@@ -70,19 +65,4 @@ public class Contact {
         this.user = user;
     }
 
-    public List<Relationship> getRelationshipsSrc() {
-        return relationshipsSrc;
-    }
-
-    public void setRelationshipsSrc(List<Relationship> relationshipsSrc) {
-        this.relationshipsSrc = relationshipsSrc;
-    }
-
-    public List<Relationship> getRelationshipsDest() {
-        return relationshipsDest;
-    }
-
-    public void setRelationshipsDest(List<Relationship> relationshipsDest) {
-        this.relationshipsDest = relationshipsDest;
-    }
 }
