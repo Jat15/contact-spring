@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <header>
+    <div th:replace="~{fragments/nav-auth :: nav}" />
+    <h1>Add contact</h1>
+  </header>
+  <main>
+    <form action="#" th:action="@{/relation/add}"  method="post">
+      <div>
+        <p th:text="${contactSrc.lastname} + ' ' + ${contactSrc.firstname}">
+      </div>
+      <div hidden>
+        <input th:field="${contactSrc.id}" th:value="${contactSrc.id}">
+      </div>
+      <div>
+        <span>est</span>
+      </div>
+      <div>
+        <select th:field="${tagSrc.id}">
+          <option th:each="tag : ${tags}"  th:value="${tag.id}" th:text="${tag.neutral}">
+        </select>
+      </div>
+      <div>
+        <span>de</span>
+      </div>
+      <div>
+        <select th:field="${contactDest.id}">
+          <option th:each="contact : ${contacts}"  th:value="${contact.id}" th:text="${contact.lastname}">
+        </select>
+      </div>
+      <input type="submit" value="Confirmer">
+    </form>
+  </main>
+  <div th:replace="~{fragments/footer :: footer}" />
+</body>
+</html>
