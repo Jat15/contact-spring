@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
           integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/card.css}" rel="stylesheet"/>
 </head>
 <body>
 <div id="layout">
@@ -22,10 +23,10 @@
             <h1>Détails</h1>
         </header>
         <section class="content">
-            <p th:text="'Nom : ' + *{lastname}"></p>
-            <p th:text="'Prénom : ' + *{firstname}"></p>
-            <p th:text="'Email : ' + *{email}"></p>
-            <p th:text="'Tél : ' + *{tel}"></p>
+            <p th:text="'Nom : ' + *{lastname}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/lastname'}">Edit</a>
+            <p th:text="'Prénom : ' + *{firstname}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/firstname'}">Edit</a>
+            <p th:text="'Email : ' + *{email}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/email'}">Edit</a>
+            <p th:text="'Tél : ' + *{tel}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/tel'}">Edit</a>
         </section>
         <footer class="content">
             <a th:href="@{'/relation/add/' + *{id}}">Ajout d'une relation</a>
