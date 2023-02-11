@@ -152,11 +152,9 @@ appears on the left side of the page.
     }
 
     .nav-btn{
-        border:none;
-        outline:none;
-        background:transparent;
-        cursor:pointer;
-        color: #fff;
+        all: unset;
+        cursor: pointer;
+        color: #999;
         padding: 0.6em 0.6em 0.6em 0.6em;
         width: 200px;
     }
