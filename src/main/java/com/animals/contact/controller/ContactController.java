@@ -4,7 +4,7 @@ import com.animals.contact.entity.Contact;
 import com.animals.contact.entity.Relationship;
 import com.animals.contact.entity.User;
 import com.animals.contact.repository.ContactRepository;
-import com.animals.contact.repository.UserRepository;
+import com.animals.contact.service.ContactService;
 import com.animals.contact.service.RelationshipService;
 import com.animals.contact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,13 @@ import java.util.Optional;
 @RequestMapping(path="/contact")
 public class ContactController {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private UserService userService;
     @Autowired
     private ContactRepository contactRepository;
     @Autowired
     private RelationshipService relationship;
+    @Autowired
+    private ContactService contactService;
 
     @GetMapping(path="/list")
     public String getAllContact(Model model, Principal principal) {
@@ -138,4 +138,17 @@ public class ContactController {
         }
         return "redirect:/contact/detail/" + contactId;
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteContact(Principal principal, @PathVariable Long id) {
+        String userEmail = principal.getName();
+        Optional<User> user = userService.findUser(userEmail);
+
+        if (user.isPresent()) {
+            contactService.delete(id, user.get());
+        }
+
+        return "redirect:/contact/list";
+    }
+
 }
