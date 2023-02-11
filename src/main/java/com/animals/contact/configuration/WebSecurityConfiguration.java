@@ -36,8 +36,8 @@ public class WebSecurityConfiguration{
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
+                        .loginPage("/login").permitAll()
+                        .defaultSuccessUrl("/contact/list",true)
                 )
                 .logout((logout) -> logout.permitAll());
 
