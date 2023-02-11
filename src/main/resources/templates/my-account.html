@@ -2,9 +2,10 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" xmlns:th="https://www.thymeleaf.org/">
-    <title>Title</title>
+    <title>Contact - Mon Compte</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   </head>
   <body>
   <div id="layout">
@@ -21,30 +22,31 @@
         <h1>Mon compte</h1>
       </header>
       <main class="content">
-      <div th:object="${user}">
-        <div>
-          <span>Prénom : </span>
-          <span th:text="*{firstname}" />
-            <a th:href="@{/my-account/edit/firstname}" class="pure-button">Editer prénom</a>
-        </div><br>
-        <div>
-          <span>Nom : </span>
-          <span th:text="*{lastname}" />
-            <a th:href="@{/my-account/edit/lastname}" class="pure-button">Editer nom</a>
-        </div><br>
-        <div>
-          <span>Avatar : </span>
-          <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive acnt-avatar">
-          <a th:href="@{/my-account/edit/avatar}" class="pure-button">Editer avatar</a>
-        </div><br>
-        <div>
-          <span>Email : </span>
-          <span th:text="*{email}" />
-            <a th:href="@{/my-account/edit/email}" class="pure-button">Editer email</a>
-        </div><br>
-        <div>
-          <span>Mot de passe : </span>
-          <a th:href="@{/my-account/edit/password}" class="pure-button">Editer mot de passe</a>
+      <div th:object="${user}" class="pure-g">
+        <div class="pure-u-1">
+          <div class="pure-u-1">
+            <span>Avatar : </span>
+            <img th:src="*{avatar}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive acnt-avatar">
+            <a th:href="@{/my-account/edit/avatar}" ><i class="ri-edit-2-line"> </i></a>
+          </div>
+          <span class="pure-u-1-5">Prénom : </span>
+          <span class="pure-u-2-5" th:text="*{firstname}" />
+          <a th:href="@{/my-account/edit/firstname}" class="pure-u-1-5"><i class="ri-edit-2-line"></i></a>
+        </div>
+        <div class="pure-u-1">
+          <span class="pure-u-1-5">Nom : </span>
+          <span class="pure-u-2-5" th:text="*{lastname}" />
+            <a th:href="@{/my-account/edit/lastname}" class="pure-u-1-5"><i class="ri-edit-2-line"></i></a>
+        </div>
+        <div class="pure-u-1">
+          <span class="pure-u-1-5">Email : </span>
+          <span class="pure-u-2-5" th:text="*{email}" />
+            <a th:href="@{/my-account/edit/email}" class="pure-u-1-5"><i class="ri-edit-2-line"></i></a>
+        </div>
+        <div class="pure-u-1">
+          <span class="pure-u-1-5">Mot de passe : </span>
+          <span class="pure-u-2-5"></span>
+          <a th:href="@{/my-account/edit/password}" class="pure-u-1-5"><i class="ri-edit-2-line"></i></a>
         </div>
       </div>
     </main>
