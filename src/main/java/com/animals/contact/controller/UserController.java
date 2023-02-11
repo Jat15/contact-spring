@@ -33,7 +33,7 @@ public class UserController {
         Optional<User> userProfile = userService.findUser(userEmail);
 
         if (userProfile.isPresent()) {
-            model.addAttribute("user", userProfile);
+            model.addAttribute("user", userProfile.get());
             return "my-account";
         }
 
@@ -46,7 +46,7 @@ public class UserController {
         Optional<User> userProfile = userService.findUser(userEmail);
 
         if (userProfile.isPresent()) {
-            model.addAttribute("user", userProfile);
+            model.addAttribute("user", userProfile.get());
 
             model.addAttribute("field", field);
             return "my-account-edit";
