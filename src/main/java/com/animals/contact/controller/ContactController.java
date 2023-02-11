@@ -1,9 +1,11 @@
 package com.animals.contact.controller;
 
 import com.animals.contact.entity.Contact;
+import com.animals.contact.entity.Relationship;
 import com.animals.contact.entity.User;
 import com.animals.contact.repository.ContactRepository;
 import com.animals.contact.repository.UserRepository;
+import com.animals.contact.service.RelationshipService;
 import com.animals.contact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +23,12 @@ import java.util.Optional;
 public class ContactController {
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private UserService userService;
-
     @Autowired
     private ContactRepository contactRepository;
+    @Autowired
+    private RelationshipService relationship;
 
     @GetMapping(path="/list")
     public String getAllContact(Model model, Principal principal) {
@@ -49,17 +51,23 @@ public class ContactController {
         Optional<User> userProfile = userService.findUser(userEmail);
 
         if (userProfile.isPresent()) {
-            model.addAttribute("user", userProfile);
-
+            model.addAttribute("user", userProfile.get());
             Optional<Contact> contactOptional = contactRepository.findById(id);
 
             if(contactOptional.isPresent()){
                 model.addAttribute("contact", contactOptional.get());
-                return "detail.html";
+
+                Iterable<Relationship> relationsSrc = relationship.findByIdSrc(contactOptional.get().getId());
+                model.addAttribute("relationsSrc", relationsSrc);
+
+                Iterable<Relationship> relationsDest = relationship.findByIdDest(contactOptional.get().getId());
+                model.addAttribute("relationsDest", relationsDest);
+
+                return "detail";
             }
         }
 
-        return "404.html";
+        return "404";
     }
 
     @GetMapping("/add")
