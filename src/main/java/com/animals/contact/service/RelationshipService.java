@@ -31,4 +31,12 @@ public class RelationshipService{
 
         return relationshipRepository.save(relation);
     }
+
+    public Iterable<Relationship> findByIdSrc(Long id){
+        return relationshipRepository.findByContactSrcId(id);
+    }
+
+    public  Iterable<Relationship> findByIdDest(Long id){
+        return relationshipRepository.findByContactDestId(id);
+    }
 }
