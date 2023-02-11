@@ -10,10 +10,7 @@ import com.animals.contact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -96,5 +93,49 @@ public class ContactController {
         }
 
         return "redirect:/contact/list";
+    }
+
+    @GetMapping("/detail/edit/{id}/{field}")
+    public String displayMyAccount(Model model, Principal principal, @PathVariable Long id, @PathVariable String field){
+        String userEmail = principal.getName();
+        Optional<User> userProfile = userService.findUser(userEmail);
+
+        if (userProfile.isPresent()) {
+            model.addAttribute("user", userProfile.get());
+            model.addAttribute("contactId", id);
+            model.addAttribute("field", field);
+        }
+
+        return "detail-edit";
+    }
+
+    @PostMapping("/detail/edit")
+    public String updateUser(@RequestParam String field, @RequestParam String value, @RequestParam Long contactId){
+
+        Optional<Contact> contact= contactRepository.findById(contactId);
+
+        if (contact.isPresent()) {
+            switch (field) {
+                case "firstname":
+                    contact.get().setFirstname(value);
+                    break;
+                case "lastname":
+                    contact.get().setLastname(value);
+                    break;
+                case "email":
+                    contact.get().setEmail(value);
+                    break;
+                case "tel":
+                    contact.get().setTel(value);
+                    break;
+                default:
+                    System.out.println("Erreur pas le bon champ !");
+                    break;
+            }
+
+            contactRepository.save(contact.get());
+
+        }
+        return "redirect:/contact/detail/" + contactId;
     }
 }
