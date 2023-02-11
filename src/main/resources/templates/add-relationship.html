@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"  xmlns:th="https://www.thymeleaf.org/">
     <title>Title</title>
 </head>
 <body>
@@ -15,22 +15,22 @@
         <p th:text="${contactSrc.lastname} + ' ' + ${contactSrc.firstname}">
       </div>
       <div hidden>
-        <input th:field="${contactSrc.id}" th:value="${contactSrc.id}">
+        <input th:name="contactSrcId" th:value="${contactSrc.id}">
       </div>
       <div>
         <span>est</span>
       </div>
       <div>
-        <select th:field="${tagSrc.id}">
-          <option th:each="tag : ${tags}"  th:value="${tag.id}" th:text="${tag.neutral}">
+        <select th:name="tagSrcId">
+          <option th:each="t : ${tags}" th:object="${t}"  th:value="*{id}" th:text="*{neutral}">
         </select>
       </div>
       <div>
         <span>de</span>
       </div>
       <div>
-        <select th:field="${contactDest.id}">
-          <option th:each="contact : ${contacts}"  th:value="${contact.id}" th:text="${contact.lastname}">
+        <select th:name="contactDestId">
+          <option th:each="c : ${contacts}" th:object="${c}" th:value="*{id}" th:text="*{lastname}" >
         </select>
       </div>
       <input type="submit" value="Confirmer">
