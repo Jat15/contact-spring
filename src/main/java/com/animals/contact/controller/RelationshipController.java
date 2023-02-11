@@ -30,9 +30,11 @@ public class RelationshipController {
     @GetMapping("/add/{id}")
     public String displayFormAddRelationship(Principal principal, Model model, @PathVariable Long id){
         String userEmail = principal.getName();
-        User userProfile = userService.findUser(userEmail);
+        Optional<User> userProfile = userService.findUser(userEmail);
 
-        model.addAttribute("user", userProfile);
+        if (userProfile.isPresent()) {
+            model.addAttribute("user", userProfile.get());
+        }
 
         Optional<Contact> contactSrc= contactService.findById(id);
 
@@ -40,20 +42,18 @@ public class RelationshipController {
 
         Iterable<Tag> tags = tagService.all();
         model.addAttribute("tags", tags);
-        model.addAttribute("tagSrc", new Tag());
 
         Iterable<Contact> contacts = contactService.all();
         model.addAttribute("contacts", contacts);
-        model.addAttribute("contactDest", new Contact());
 
 
         return "add-relationship";
     }
 
     @PostMapping("/add")
-    public String addRelationship(@ModelAttribute Contact contactSrc, @ModelAttribute Contact contactDest, @ModelAttribute Tag tag){
-        relationshipService.add(contactSrc,contactDest,tag);
+    public String addRelationship( @RequestParam Long contactSrcId ,  @RequestParam Long tagSrcId, @RequestParam Long contactDestId){
+        relationshipService.add(contactSrcId,contactDestId,tagSrcId);
 
-        return "redirect:/contact/detail/" + contactSrc.getId();
+        return "redirect:/contact/detail/" + contactSrcId;
     }
 }
