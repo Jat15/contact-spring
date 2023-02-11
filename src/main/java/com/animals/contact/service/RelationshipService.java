@@ -14,10 +14,19 @@ import java.util.Optional;
 public class RelationshipService{
     @Autowired
     ContactRepository contactRepository;
-
     @Autowired
     RelationshipRepository relationshipRepository;
-    public Relationship add(Contact contactSrc,Contact contactDest, Tag tagSrc) {
+
+    public Relationship add(Long contactSrcId,Long contactDestId, Long tagSrcId) {
+        Contact contactSrc = new Contact();
+        contactSrc.setId(contactSrcId);
+
+        Contact contactDest = new Contact();
+        contactDest.setId(contactDestId);
+
+        Tag tagSrc = new Tag();
+        tagSrc.setId(tagSrcId);
+
         Relationship relation = new Relationship(contactSrc, contactDest, tagSrc);
 
         return relationshipRepository.save(relation);
