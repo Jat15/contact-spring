@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns="http://www.w3.org/1999/html" xmlns:th="https://www.thymeleaf.org/">
+<html lang="fr" xmlns:th="https://www.thymeleaf.org/">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sign-Up</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
         <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
     </head>
     <body>
     <div id="layout">
@@ -22,13 +24,31 @@
         </header>
         <main class="content">
             <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post" class="pure-form pure-form-stacked">
-                <fieldset>
-                    <p class="pure-control-group">Nom: <input type="text" th:field="*{lastname}"></p>
-                    <p class="pure-control-group">Prénom: <input type="text" th:field="*{firstname}"></p>
-                    <p class="pure-control-group">Email: <input type="email" th:field="*{email}"></p>
-                    <p class="pure-control-group">Mot de passe: <input type="password" th:field="*{password}"></p>
-                    <p class="pure-control-group">Avatar: <input type="file" th:field="*{avatar}"></p>
-                    <input type="submit" value="Enregistrer" class="pure-button pure-button-primary">
+                <fieldset class="pure-g text-center">
+                    <div class="pure-u-1 text-center">
+                        <label for="avatar">Avatar</label>
+                        <input type="file" id="avatar" th:field="*{avatar}" class="pure-u-23-24"/>
+                    </div>
+                    <div class="pure-u-1  pure-u-md-1-2">
+                        <label for="lastname">Nom</label>
+                        <input type="text" id="lastname" th:field="*{lastname}" class="pure-u-23-24"/>
+                    </div>
+                    <div class="pure-u-1  pure-u-md-1-2">
+                        <label for="firstname">Prénom</label>
+                        <input type="text" id="firstname" th:field="*{firstname}" class="pure-u-23-24"/>
+                    </div>
+
+                    <div class="pure-u-1  pure-u-md-1-2">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" th:field="*{email}" class="pure-u-23-24"/>
+                    </div>
+                    <div class="pure-u-1  pure-u-md-1-2">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" th:field="*{password}" class="pure-u-23-24"/>
+                    </div>
+                    <div class="pure-u-1 text-center">
+                    <button type="submit" class="pure-button pure-button-primary pure-u-1" >Enregistrer</button>
+                    </div>
                 </fieldset>
             </form>
         </main>
