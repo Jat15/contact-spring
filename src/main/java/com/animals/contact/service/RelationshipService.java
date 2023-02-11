@@ -1,6 +1,7 @@
 package com.animals.contact.service;
 
 import com.animals.contact.entity.Contact;
+import com.animals.contact.entity.RelationShipPK;
 import com.animals.contact.entity.Relationship;
 import com.animals.contact.entity.Tag;
 import com.animals.contact.repository.ContactRepository;
@@ -38,5 +39,9 @@ public class RelationshipService{
 
     public  Iterable<Relationship> findByIdDest(Long id){
         return relationshipRepository.findByContactDestId(id);
+    }
+
+    public void delete(Long contactSrcId,Long contactDestId){
+        relationshipRepository.deleteById(new RelationShipPK(contactSrcId, contactDestId));
     }
 }
