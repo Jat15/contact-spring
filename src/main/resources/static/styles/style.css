@@ -290,3 +290,15 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 .profile-link{
     text-decoration: none;
 }
+
+/* Input */
+
+input {
+    text-align: center;
+}
+
+/* Tool */
+
+.text-center {
+    text-align: center;
+}
