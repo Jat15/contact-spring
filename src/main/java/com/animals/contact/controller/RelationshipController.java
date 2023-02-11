@@ -28,7 +28,7 @@ public class RelationshipController {
     private UserService userService;
 
     @GetMapping("/add/{id}")
-    public String displayFormAddRelationship(Principal principal, Model model, @PathVariable Long id){
+    public String displayFormAddRelationship(Principal principal, Model model, @PathVariable Long id) {
         String userEmail = principal.getName();
         Optional<User> userProfile = userService.findUser(userEmail);
 
@@ -51,8 +51,15 @@ public class RelationshipController {
     }
 
     @PostMapping("/add")
-    public String addRelationship( @RequestParam Long contactSrcId ,  @RequestParam Long tagSrcId, @RequestParam Long contactDestId){
+    public String addRelationship( @RequestParam Long contactSrcId ,  @RequestParam Long tagSrcId, @RequestParam Long contactDestId) {
         relationshipService.add(contactSrcId,contactDestId,tagSrcId);
+
+        return "redirect:/contact/detail/" + contactSrcId;
+    }
+
+    @GetMapping("/delete/{contactSrcId}/{contactDestId}")
+    public String delete(@PathVariable Long contactSrcId, @PathVariable Long contactDestId) {
+        relationshipService.delete(contactSrcId, contactDestId);
 
         return "redirect:/contact/detail/" + contactSrcId;
     }

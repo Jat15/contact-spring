@@ -32,16 +32,25 @@
             <div>
 
                 <div th:each="relationSrc, size : ${relationsSrc}" th:object="${relationSrc}">
-
-                    <span  th:text="*{contactDest.lastname +' ' +  contactDest.firstname }"/>
-                    <span  th:text="*{tagSrc.tagDest != null ? tagSrc.tagDest.neutral : tagSrc.neutral }"/>
+                    <a th:href="@{'/contact/detail/' + *{contactDest.id}}">
+                        <div>
+                            <span  th:text="*{contactDest.lastname +' ' +  contactDest.firstname }"/>
+                            <span  th:text="*{tagSrc.tagDest != null ? tagSrc.tagDest.neutral : tagSrc.neutral }"/>
+                        </div>
+                    </a>
+                    <a th:href="@{'/relation/delete/' + *{contactSrc.id } + '/' + *{contactDest.id }}">Supprimer</a>
                 </div>
 
                 <div th:each="relationDest : ${relationsDest}" th:object="${relationDest}">
-                    <span  th:text="*{contactSrc.lastname +' ' +  contactSrc.firstname }"/>
-                    <span  th:text="*{tagSrc.neutral}"/>
+                    <a th:href="@{'/contact/detail/' + *{contactSrc.id}}">
+                        <div>
+                            <span  th:text="*{contactSrc.lastname +' ' +  contactSrc.firstname }"/>
+                            <span  th:text="*{tagSrc.neutral}"/>
+                        </div>
+                    </a>
+                    <a th:href="@{'/relation/delete/' + *{contactSrc.id } + '/' + *{contactDest.id }}">Supprimer</a>
                 </div>
-            </th:block>
+            </div>
         </footer>
     </main>
     <div th:replace="~{fragments/footer :: footer}"/>
