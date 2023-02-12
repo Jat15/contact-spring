@@ -23,11 +23,11 @@
             <h1>Inscription</h1>
         </header>
         <main class="content">
-            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post" class="pure-form pure-form-stacked">
+            <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post" enctype="multipart/form-data" class="pure-form pure-form-stacked">
                 <fieldset class="pure-g text-center">
                     <div class="pure-u-1 text-center">
                         <label for="avatar">Avatar</label>
-                        <input type="file" id="avatar" th:field="*{avatar}" class="pure-u-23-24"/>
+                        <input type="file" id="avatar" th:name="file" class="pure-u-23-24"/>
                     </div>
                     <div class="pure-u-1  pure-u-md-1-2">
                         <label for="lastname">Nom</label>

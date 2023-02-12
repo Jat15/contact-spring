@@ -21,9 +21,13 @@
           <h1>Edition du compte</h1>
         </header>
         <main class="content">
-          <form action="#" th:action="@{/my-account/edit}" method="post" class="pure-form">
+          <form action="#" th:action="@{/my-account/edit}" method="post" enctype="multipart/form-data" class="pure-form">
               <fieldset>
               <th:block th:switch="${field}">
+                  <th:block th:case="'avatar'">
+                      <label>Avatar</label>
+                      <input type="file" th:name="file">
+                  </th:block>
                   <th:block th:case="'email'">
                       <input type="email" th:placeholder="${field}" th:name="value">
                   </th:block>
