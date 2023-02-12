@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface RelationshipRepository extends CrudRepository<Relationship, RelationShipPK> {
     Iterable<Relationship> findByContactSrcId(Long id);
     Iterable<Relationship> findByContactDestId(Long id);
+    void deleteAllByContactDest_IdOrContactSrc_Id(Long contactDest_id, Long contactSrc_id);
 }
