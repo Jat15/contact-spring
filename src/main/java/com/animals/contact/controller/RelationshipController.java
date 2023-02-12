@@ -37,21 +37,18 @@ public class RelationshipController {
         }
 
         Optional<Contact> contactSrc= contactService.findById(id);
-
         model.addAttribute("contactSrc", contactSrc.get());
 
         Iterable<Tag> tags = tagService.all();
         model.addAttribute("tags", tags);
 
-        Iterable<Contact> contacts = contactService.all();
-        model.addAttribute("contacts", contacts);
-
+        model.addAttribute("contacts", userProfile.get().getContacts());
 
         return "add-relationship";
     }
 
     @PostMapping("/add")
-    public String addRelationship( @RequestParam Long contactSrcId ,  @RequestParam Long tagSrcId, @RequestParam Long contactDestId) {
+    public String addRelationship( @RequestParam Long contactSrcId,  @RequestParam Long tagSrcId, @RequestParam Long contactDestId) {
         relationshipService.add(contactSrcId,contactDestId,tagSrcId);
 
         return "redirect:/contact/detail/" + contactSrcId;
