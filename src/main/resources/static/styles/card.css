@@ -15,8 +15,19 @@ a {
 
 }
 
+.flex-column {
+    flex-direction: column;
+}
 .flex-wrap {
     flex-wrap: wrap;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.justify-content-se {
+    justify-content: space-evenly;
 }
 
 .p-1 {
@@ -39,3 +50,18 @@ a {
 .menu-icons {
     font-size: 35px;
 }
+
+
+.contact {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.contact-lastname { grid-area: 1 / 3 / 2 / 5; }
+.contact-firstname { grid-area: 2 / 3 / 3 / 5; }
+.contact-email { grid-area: 3 / 3 / 4 / 5; }
+.contact-tel { grid-area: 4 / 3 / 5 / 5; }
+.contact-avatar { grid-area: 1 / 1 / 5 / 3; }
