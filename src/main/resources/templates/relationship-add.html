@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/card.css}" rel="stylesheet"/>
 </head>
 <body>
 <div id="layout">
@@ -22,6 +23,7 @@
   </header>
   <main class="content">
     <form action="#" th:action="@{/relation/add}"  method="post" class="pure-form pure-form-stacked">
+      <div class="flex flex-wrap flex-row justify-content-se">
       <div>
         <p th:text="${contactSrc.lastname} + ' ' + ${contactSrc.firstname}">
       </div>
@@ -29,7 +31,7 @@
         <input th:name="contactSrcId" th:value="${contactSrc.id}">
       </div>
       <div>
-        <span>est</span>
+        <p>est</p>
       </div>
       <div>
         <select th:name="tagSrcId">
@@ -37,14 +39,15 @@
         </select>
       </div>
       <div>
-        <span>de</span>
+        <p>de</p>
       </div>
       <div>
         <select th:name="contactDestId">
           <option th:each="c : ${contacts}" th:object="${c}" th:value="*{id}" th:text="*{lastname}+' '+*{firstname}" >
         </select>
-      </div><br>
+      </div>
       <input type="submit" value="Confirmer" class="pure-button pure-button-primary">
+      </div>
     </form>
   </main>
   <div th:replace="~{fragments/footer :: footer}" />

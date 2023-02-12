@@ -32,17 +32,11 @@
                         </form>
                     </div>
                     <div class="pure-u-1-2 menu-icons">
-                       <a th:href="@{/contact/delete-list}"><i class="ri-user-unfollow-line"></i></a>
+                        <a th:href="@{/contact/list}"><i class="ri-user-add-line"></i></a>
                     </div>
                 </div>
                 <div class="flex flex-wrap">
-                    <a th:href="@{/contact/add}">
-                        <div class="card-border-color-width p-1 m-1 card-contact text-center">
-                            <h2><i class="ri-user-add-line"></i></h2>
-                            <p>Ajouter un contact</p>
-                        </div>
-                    </a>
-                    <a th:each="contact : ${ contacts }" th:object="${contact}" th:href="@{'/contact/detail/' + *{id}}">
+                    <a th:each="contact : ${ contacts }" th:object="${contact}" th:href="@{'/contact/delete/' + *{id}}">
                         <div class="card-border-color-width p-1 m-1 card-contact">
                             <img th:src="@{'/img/avatar/contacts/' + *{avatar}}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img w-150">
                             <strong><i class="ri-user-line"></i>  [[*{firstname} + ' ' + *{lastname}]]</strong>
