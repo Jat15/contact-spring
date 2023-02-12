@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Avatar ###
+/src/main/resources/static/img/avatar
