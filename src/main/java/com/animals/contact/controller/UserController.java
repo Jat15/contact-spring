@@ -1,11 +1,14 @@
 package com.animals.contact.controller;
 
 import com.animals.contact.entity.User;
+import com.animals.contact.service.PictureUploadService;
 import com.animals.contact.service.UserService;
+import jakarta.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -14,6 +17,10 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    ServletContext context;
+    @Autowired
+    PictureUploadService pictureUploadService;
 
     @GetMapping("/sign-up")
     public String displayFormAddUser(Model model){
@@ -22,8 +29,15 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public String addUser (User user) {
-        userService.addUser(user);
+    public String addUser (User user, @RequestParam(name= "file", required = false) MultipartFile file) {
+        User newUser = userService.addUser(user);
+
+        if (file != null) {
+            String avatar = pictureUploadService.save(file, newUser.getId(), "users");
+            newUser.setAvatar(avatar);
+            userService.updateUser(newUser);
+        }
+
         return "redirect:home";
     }
 
@@ -57,13 +71,18 @@ public class UserController {
 
 
     @PostMapping("/my-account/edit")
-    public String updateUser(Principal principal, @RequestParam String field,  @RequestParam String value){
-
+    public String updateUser(Principal principal,@RequestParam String field, @RequestParam(required = false) String value, @RequestParam(required = false) MultipartFile file){
         String userEmail = principal.getName();
         Optional<User> user = userService.findUser(userEmail);
 
         if (user.isPresent()) {
             switch (field) {
+                case "avatar":
+                    if (file != null) {
+                        String avatar = pictureUploadService.save(file, user.get().getId(), "users");
+                        user.get().setAvatar(avatar);
+                    }
+                    break;
                 case "password":
                     user.get().setPassword(value);
                     break;
@@ -75,9 +94,6 @@ public class UserController {
                     break;
                 case "email":
                     user.get().setEmail(value);
-                    break;
-                case "avatar":
-                    user.get().setAvatar(value);
                     break;
                 default:
                     System.out.println("Erreur pas le bon champ !");
