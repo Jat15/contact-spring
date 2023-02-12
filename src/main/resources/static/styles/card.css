@@ -1,0 +1,11 @@
+
+.card-border-color-width {
+    border-color: rgba(255, 255, 255, .2);
+    border-width: 4px;
+    border-style: ridge;
+}
+
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
