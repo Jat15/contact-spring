@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContactRepository extends CrudRepository<Contact, Long> {
-     Iterable<Contact> findAllByLastnameContainingOrFirstnameContainingOrTelContainingOrEmailContaining(String lastname, String firstname, String tel, String email);
+     Iterable<Contact> findAllByLastnameContainingAndUserIdOrFirstnameContainingAndUserIdOrTelContainingAndUserIdOrEmailContainingAndUserId(String lastname, Long user_id, String firstname, Long user_id2, String tel, Long user_id3, String email, Long user_id4);
 }
