@@ -27,20 +27,20 @@
                         <input type="text" class="pure-input" name="search"/>
                         <button type="submit" class="pure-button">Search</button>
                     </form>
-                </div>
+                </div><br>
                 <table class="pure-table">
                     <thead>
-                        <th>Détails</th>
                         <th>Prénom</th>
                         <th>Nom</th>
-                        <th>Delete</th>
+                        <th>Détails</th>
+                        <th>Supprimer</th>
                     </thead>
                     <tbody>
                         <tr th:each="contact : ${ contacts }" th:object="${contact}">
-                            <td><a th:href="@{'/contact/detail/' + *{id}} " class="pure-button">Voir</a></td>
                             <td><p th:text="*{firstname}"></p></td>
                             <td><p th:text="*{lastname}"></p></td>
-                            <td><a th:href="@{'/contact/delete/' + *{id}}">Delete</a></td>
+                            <td><a th:href="@{'/contact/detail/' + *{id}} " class="pure-button">Voir</a></td>
+                            <td><a th:href="@{'/contact/delete/' + *{id}}" class="pure-button">Supprimer</a></td>
                             </a>
                         </tr>
                     </tbody>
