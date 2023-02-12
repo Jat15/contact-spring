@@ -10,8 +10,17 @@ un système permettant à ses utilisateurs de gérer une liste de contacts.
 ### Téléchargement et installation
 
 1. **Téléchargez** le projet grâce à ce [lien](https://github.com/Jat15/contact-spring.git)
-1. Démarrez **mySQL** et créez une base de données **contact**
-1. **Lancez** le projet avec Tomcat et le lien [localhost:8080/home](localhost:8080/home)
+2. Démarrez **mySQL** et créez une base de données **contact**
+3. **Lancez** le projet avec Tomcat et le lien [localhost:8080/home](localhost:8080/home)
+4. Pour compléter la base de données, il y a un fichier SQL dans le dossier 'start'
+5. Il faut créer les dossiers de la manière suivante (contacts, users):  
+   ```
+   static
+   |───img
+       └───avatar
+           ├───contacts
+           └───users
+   ```
 
 ### /sign-up
 
