@@ -28,7 +28,7 @@
           <a th:href="@{/my-account/edit/avatar}">
               <div class="card-border-color-width text-center pure-u-1">
                   <span><i class="ri-edit-2-line"></i> Avatar</span>
-                  <img th:src="@{'/img/avatar/users/' + *{id} + *{avatar}}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive act-avatar">
+                  <img th:src="@{'/img/avatar/users/' + *{avatar}}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive act-avatar">
               </div>
           </a>
           <a th:href="@{/my-account/edit/firstname}" class="pure-u-1">

@@ -21,8 +21,10 @@
       <h1>Ajouter un contact</h1>
     </header>
     <main class="content">
-      <form action="#" th:action="@{/contact/add}" th:object="${contact}" method="post" class="pure-form pure-form-stacked">
+      <form action="#" th:action="@{/contact/add}" th:object="${contact}" method="post" enctype="multipart/form-data" class="pure-form pure-form-stacked">
         <fieldset>
+          <label for="avatar">Avatar</label>
+          <input type="file" id="avatar" th:name="file" class="pure-u-23-24"/>
           <p>Nom: <input type="text" th:field="*{lastname}"></p>
           <p>Prénom: <input type="text" th:field="*{firstname}"></p>
           <p>Email: <input type="email" th:field="*{email}"></p>

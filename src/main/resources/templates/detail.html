@@ -23,6 +23,7 @@
             <h1>Détails</h1>
         </header>
         <section class="content">
+            <img th:src="@{'/img/avatar/contacts/' + *{avatar}}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img"><a th:href="@{'/contact/detail/edit/' + *{id} + '/avatar'}" class="pure-button">Modifier</a>
             <p th:text="'Nom : ' + *{lastname}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/lastname'}" class="pure-button">Modifier</a>
             <p th:text="'Prénom : ' + *{firstname}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/firstname'}" class="pure-button">Modifier</a>
             <p th:text="'Email : ' + *{email}"></p><a th:href="@{'/contact/detail/edit/' + *{id} + '/email'}" class="pure-button">Modifier</a>

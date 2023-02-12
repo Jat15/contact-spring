@@ -9,15 +9,15 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String firstname;
-    String lastname;
-    String password;
+    private Long id;
+    private String firstname;
+    private String lastname;
+    private String password;
     @Column(unique = true)
-    String email;
-    String avatar;
+    private String email;
+    private String avatar;
     @OneToMany(mappedBy="user")
-    List<Contact> contacts;
+    private List<Contact> contacts;
 
 
     public Long getId() {

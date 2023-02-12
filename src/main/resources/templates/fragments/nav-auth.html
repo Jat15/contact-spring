@@ -1,6 +1,6 @@
 <nav class="pure-menu">
     <div th:object="${user}" class="user pure-menu-item"><a th:href="@{/my-account}" class="profile-link">
-        <img th:src="@{'/img/avatar/users/' + *{id} + *{avatar}}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive nav-avatar"><br>
+        <img th:src="@{'/img/avatar/users/' + *{avatar}}" th:alt="'Avatar de ' + *{lastname} + ' ' + *{firstname}" class="pure-img-responsive nav-avatar"><br>
         <span th:text="*{firstname} + ' ' + *{lastname}" />
     </a>
     </div>

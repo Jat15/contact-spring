@@ -5,15 +5,19 @@ import com.animals.contact.entity.Relationship;
 import com.animals.contact.entity.User;
 import com.animals.contact.repository.ContactRepository;
 import com.animals.contact.service.ContactService;
+import com.animals.contact.service.PictureUploadService;
 import com.animals.contact.service.RelationshipService;
 import com.animals.contact.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.Optional;
+
+import static java.util.UUID.randomUUID;
 
 @Controller
 @RequestMapping(path="/contact")
@@ -21,9 +25,11 @@ public class ContactController {
     @Autowired
     private UserService userService;
     @Autowired
-    private RelationshipService relationship;
+    private RelationshipService relationshipService;
     @Autowired
     private ContactService contactService;
+    @Autowired
+    PictureUploadService pictureUploadService;
 
     @GetMapping(path="/list")
     public String getAllContact(Model model, Principal principal) {
@@ -52,10 +58,10 @@ public class ContactController {
             if(contactOptional.isPresent()){
                 model.addAttribute("contact", contactOptional.get());
 
-                Iterable<Relationship> relationsSrc = relationship.findByIdSrc(contactOptional.get().getId());
+                Iterable<Relationship> relationsSrc = relationshipService.findByIdSrc(contactOptional.get().getId());
                 model.addAttribute("relationsSrc", relationsSrc);
 
-                Iterable<Relationship> relationsDest = relationship.findByIdDest(contactOptional.get().getId());
+                Iterable<Relationship> relationsDest = relationshipService.findByIdDest(contactOptional.get().getId());
                 model.addAttribute("relationsDest", relationsDest);
 
                 return "detail";
@@ -81,13 +87,18 @@ public class ContactController {
     }
 
     @PostMapping("/add")
-    public String addContact (Contact contact, Principal principal) {
+    public String addContact (Contact contact, Principal principal, @RequestParam(required = false) MultipartFile file) {
         String userEmail = principal.getName();
         Optional<User> user = userService.findUser(userEmail);
 
         if (user.isPresent()) {
             contact.setUser(user.get());
-            contactService.add(contact);
+            Contact newContact = contactService.add(contact);
+            if (file != null) {
+                String avatar = pictureUploadService.save(file, "contacts");
+                newContact.setAvatar(avatar);
+                contactService.add(newContact);
+            }
         }
 
         return "redirect:/contact/list";
@@ -108,12 +119,18 @@ public class ContactController {
     }
 
     @PostMapping("/detail/edit")
-    public String updateUser(@RequestParam String field, @RequestParam String value, @RequestParam Long contactId){
+    public String updateUser(@RequestParam String field, @RequestParam(required = false) String value, @RequestParam Long contactId, @RequestParam(required = false) MultipartFile file){
 
         Optional<Contact> contact= contactService.findById(contactId);
 
         if (contact.isPresent()) {
             switch (field) {
+                case "avatar":
+                    if (file != null) {
+                        String avatar = pictureUploadService.save(file, "contacts");
+                        contact.get().setAvatar(avatar);
+                    }
+                    break;
                 case "firstname":
                     contact.get().setFirstname(value);
                     break;

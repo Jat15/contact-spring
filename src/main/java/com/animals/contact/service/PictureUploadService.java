@@ -5,19 +5,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
+import static java.util.UUID.randomUUID;
+
 @Service
 public class PictureUploadService {
-
-    public String save(MultipartFile file, Long id, String type) {
-
-        //replace by  ? file.getContentType()
-        String[] fileArr = (file.getOriginalFilename()).split("\\.");
+    public String save(MultipartFile file, String type) {
         String contentType = file.getContentType();
+        String[] contentTypeArr = contentType.split("/");
 
-
-        if ( fileArr.length > 0 && contentType.contains("image")) {
-            String format = "." + fileArr[fileArr.length - 1];
-            String fileName = id + format;
+        if ( contentTypeArr.length > 0 /*&& contentType.contains("image")*/) {
+            String uuid = randomUUID().toString();
+            String format = "." + contentTypeArr[contentTypeArr.length - 1];
+            String fileName = uuid + format;
 
             String path = this.getClass().getClassLoader().getResource("").getPath();
             String pathArr[] = path.split("/target/classes/");
@@ -25,7 +24,7 @@ public class PictureUploadService {
 
             try {
                 file.transferTo(new File(fullPath + fileName));
-                return format;
+                return fileName;
             } catch (Exception e) {
                 System.out.println("Erreur de transfer");
             }
@@ -34,5 +33,4 @@ public class PictureUploadService {
         }
         return null;
     }
-
 }
