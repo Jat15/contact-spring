@@ -14,6 +14,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FakerService fakerService;
 
     public User addUser(User user) {
         boolean userExist = userRepository.existsUserByEmail(user.getEmail());
@@ -24,7 +26,10 @@ public class UserService {
 
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
-        return userRepository.save(user);
+        User newUser = userRepository.save(user);
+        fakerService.createAllContact(20, newUser);
+
+        return newUser;
     }
 
     public Optional<User> findUser(String email){
