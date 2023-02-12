@@ -151,4 +151,21 @@ public class ContactController {
         return "redirect:/contact/list";
     }
 
+    @GetMapping("/find")
+    public String displaySearch(Principal principal, @RequestParam String search, Model model) {
+        String userEmail = principal.getName();
+        Optional<User> user = userService.findUser(userEmail);
+
+
+        if (user.isPresent()){
+            Iterable<Contact> contacts = contactService.findByString(search);
+
+            model.addAttribute("user", user.get());
+            model.addAttribute("contacts", contacts);
+            return "list-contact";
+        }
+
+        return "redirect:/home";
+    }
+
 }
