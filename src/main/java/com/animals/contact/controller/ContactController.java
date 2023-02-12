@@ -3,7 +3,6 @@ package com.animals.contact.controller;
 import com.animals.contact.entity.Contact;
 import com.animals.contact.entity.Relationship;
 import com.animals.contact.entity.User;
-import com.animals.contact.repository.ContactRepository;
 import com.animals.contact.service.ContactService;
 import com.animals.contact.service.PictureUploadService;
 import com.animals.contact.service.RelationshipService;
@@ -178,6 +177,21 @@ public class ContactController {
             model.addAttribute("user", user.get());
             model.addAttribute("contacts", contacts);
             return "contact-list";
+        }
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("delete-list")
+    public String displayDeleteList(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        Optional<User> user = userService.findUser(userEmail);
+
+
+        if (user.isPresent()){
+            model.addAttribute("user", user.get());
+            model.addAttribute("contacts", user.get().getContacts());
+            return "contact-delete";
         }
 
         return "redirect:/home";
