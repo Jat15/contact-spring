@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String displayFormAddUser(Model model){
         model.addAttribute("user", new User());
-        return "sign-up";
+        return "user-add";
     }
 
     @PostMapping("/sign-up")
@@ -48,7 +48,7 @@ public class UserController {
 
         if (userProfile.isPresent()) {
             model.addAttribute("user", userProfile.get());
-            return "my-account";
+            return "user-detail";
         }
 
         return "redirect:/contact/list";
@@ -63,7 +63,7 @@ public class UserController {
             model.addAttribute("user", userProfile.get());
 
             model.addAttribute("field", field);
-            return "my-account-edit";
+            return "user-edit";
         }
 
         return "redirect:/contact/list";

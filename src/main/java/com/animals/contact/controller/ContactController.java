@@ -17,8 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.security.Principal;
 import java.util.Optional;
 
-import static java.util.UUID.randomUUID;
-
 @Controller
 @RequestMapping(path="/contact")
 public class ContactController {
@@ -40,7 +38,7 @@ public class ContactController {
         if (user.isPresent()){
             model.addAttribute("user", user.get());
             model.addAttribute("contacts", user.get().getContacts());
-            return "list-contact";
+            return "contact-list";
         }
 
         return "redirect:/home";
@@ -59,13 +57,13 @@ public class ContactController {
                 if (userProfile.get().getId() == contactOptional.get().getUser().getId()) {
                     model.addAttribute("contact", contactOptional.get());
 
-                Iterable<Relationship> relationsSrc = relationshipService.findByIdSrc(contactOptional.get().getId());
-                model.addAttribute("relationsSrc", relationsSrc);
+                    Iterable<Relationship> relationsSrc = relationshipService.findByIdSrc(contactOptional.get().getId());
+                    model.addAttribute("relationsSrc", relationsSrc);
 
-                Iterable<Relationship> relationsDest = relationshipService.findByIdDest(contactOptional.get().getId());
-                model.addAttribute("relationsDest", relationsDest);
+                    Iterable<Relationship> relationsDest = relationshipService.findByIdDest(contactOptional.get().getId());
+                    model.addAttribute("relationsDest", relationsDest);
 
-                    return "detail";
+                    return "contact-detail";
                 }
             }
         }
@@ -82,7 +80,7 @@ public class ContactController {
             model.addAttribute("user", userProfile.get());
 
             model.addAttribute("contact", new Contact());
-            return "add-contact";
+            return "contact-add";
         }
 
         return "404";
@@ -117,7 +115,7 @@ public class ContactController {
             model.addAttribute("field", field);
         }
 
-        return "detail-edit";
+        return "contact-edit";
     }
 
     @PostMapping("/detail/edit")
@@ -179,7 +177,7 @@ public class ContactController {
 
             model.addAttribute("user", user.get());
             model.addAttribute("contacts", contacts);
-            return "list-contact";
+            return "contact-list";
         }
 
         return "redirect:/home";
