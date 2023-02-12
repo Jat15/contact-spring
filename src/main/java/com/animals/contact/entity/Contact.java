@@ -14,6 +14,7 @@ public class Contact {
     private String firstname;
     private String email;
     private String tel;
+    private String avatar;
     @ManyToOne
     private User user;
 
@@ -65,4 +66,11 @@ public class Contact {
         this.user = user;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }
