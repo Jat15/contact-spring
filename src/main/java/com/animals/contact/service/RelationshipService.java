@@ -9,9 +9,6 @@ import com.animals.contact.repository.RelationshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.Optional;
-
 @Service
 public class RelationshipService{
     @Autowired
@@ -47,20 +44,6 @@ public class RelationshipService{
     }
 
     public void deleteAllById(Long id) {
-        Iterable<Relationship>  relationshipsDest = this.findByIdDest(id);
-        Iterable<Relationship>  relationshipsSrc = this.findByIdSrc(id);
-
-        Iterator dest = relationshipsDest.iterator();
-        while (dest.hasNext()) {
-            Relationship r = (Relationship) dest.next();
-            this.delete(r.getContactSrc().getId(), r.getContactDest().getId());
-        }
-
-
-        Iterator src = relationshipsSrc.iterator();
-        while (src.hasNext()) {
-            Relationship r = (Relationship) src.next();
-            this.delete(r.getContactSrc().getId(), r.getContactDest().getId());
-        }
+        relationshipRepository.deleteAllByContactDest_IdOrContactSrc_Id(id,id);
     }
 }
