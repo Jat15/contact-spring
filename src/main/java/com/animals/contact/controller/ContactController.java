@@ -56,7 +56,8 @@ public class ContactController {
             Optional<Contact> contactOptional = contactService.findById(id);
 
             if(contactOptional.isPresent()){
-                model.addAttribute("contact", contactOptional.get());
+                if (userProfile.get().getId() == contactOptional.get().getUser().getId()) {
+                    model.addAttribute("contact", contactOptional.get());
 
                 Iterable<Relationship> relationsSrc = relationshipService.findByIdSrc(contactOptional.get().getId());
                 model.addAttribute("relationsSrc", relationsSrc);
@@ -64,7 +65,8 @@ public class ContactController {
                 Iterable<Relationship> relationsDest = relationshipService.findByIdDest(contactOptional.get().getId());
                 model.addAttribute("relationsDest", relationsDest);
 
-                return "detail";
+                    return "detail";
+                }
             }
         }
 
@@ -182,5 +184,4 @@ public class ContactController {
 
         return "redirect:/home";
     }
-
 }
