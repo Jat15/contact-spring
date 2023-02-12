@@ -33,7 +33,7 @@ public class UserController {
         User newUser = userService.addUser(user);
 
         if (file != null) {
-            String avatar = pictureUploadService.save(file, newUser.getId(), "users");
+            String avatar = pictureUploadService.save(file,"users");
             newUser.setAvatar(avatar);
             userService.updateUser(newUser);
         }
@@ -79,7 +79,7 @@ public class UserController {
             switch (field) {
                 case "avatar":
                     if (file != null) {
-                        String avatar = pictureUploadService.save(file, user.get().getId(), "users");
+                        String avatar = pictureUploadService.save(file, "users");
                         user.get().setAvatar(avatar);
                     }
                     break;
