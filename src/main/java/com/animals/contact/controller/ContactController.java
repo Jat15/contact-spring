@@ -21,8 +21,6 @@ public class ContactController {
     @Autowired
     private UserService userService;
     @Autowired
-    private ContactRepository contactRepository;
-    @Autowired
     private RelationshipService relationship;
     @Autowired
     private ContactService contactService;
@@ -49,7 +47,7 @@ public class ContactController {
 
         if (userProfile.isPresent()) {
             model.addAttribute("user", userProfile.get());
-            Optional<Contact> contactOptional = contactRepository.findById(id);
+            Optional<Contact> contactOptional = contactService.findById(id);
 
             if(contactOptional.isPresent()){
                 model.addAttribute("contact", contactOptional.get());
@@ -89,7 +87,7 @@ public class ContactController {
 
         if (user.isPresent()) {
             contact.setUser(user.get());
-            contactRepository.save(contact);
+            contactService.add(contact);
         }
 
         return "redirect:/contact/list";
@@ -112,7 +110,7 @@ public class ContactController {
     @PostMapping("/detail/edit")
     public String updateUser(@RequestParam String field, @RequestParam String value, @RequestParam Long contactId){
 
-        Optional<Contact> contact= contactRepository.findById(contactId);
+        Optional<Contact> contact= contactService.findById(contactId);
 
         if (contact.isPresent()) {
             switch (field) {
@@ -133,7 +131,7 @@ public class ContactController {
                     break;
             }
 
-            contactRepository.save(contact.get());
+            contactService.add(contact.get());
 
         }
         return "redirect:/contact/detail/" + contactId;
