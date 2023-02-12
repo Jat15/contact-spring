@@ -158,7 +158,7 @@ public class ContactController {
 
 
         if (user.isPresent()){
-            Iterable<Contact> contacts = contactService.findByString(search);
+            Iterable<Contact> contacts = contactService.findByString(search, user.get().getId());
 
             model.addAttribute("user", user.get());
             model.addAttribute("contacts", contacts);

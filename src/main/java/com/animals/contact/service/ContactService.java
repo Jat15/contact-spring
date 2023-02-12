@@ -36,7 +36,7 @@ public class ContactService {
         }
     }
 
-    public Iterable<Contact> findByString(String search) {
-        return contactRepository.findAllByLastnameContainingOrFirstnameContainingOrTelContainingOrEmailContaining(search,search,search,search);
+    public Iterable<Contact> findByString(String search,Long userId) {
+        return contactRepository.findAllByLastnameContainingAndUserIdOrFirstnameContainingAndUserIdOrTelContainingAndUserIdOrEmailContainingAndUserId(search,userId,search,userId,search,userId,search,userId);
     }
 }
