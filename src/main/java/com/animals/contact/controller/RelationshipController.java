@@ -44,7 +44,7 @@ public class RelationshipController {
 
         model.addAttribute("contacts", userProfile.get().getContacts());
 
-        return "add-relationship";
+        return "relationship-add";
     }
 
     @PostMapping("/add")
